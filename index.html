@@ -1,525 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DMSH Trust</title>
-
-<style>
-
-body{
-margin:0;
-font-family:"Helvetica Neue",Arial;
-color:#111;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:25px 80px;
-border-bottom:1px solid #eee;
-background:#fff;
-}
-
-.logo{
-font-size:22px;
-font-weight:600;
-letter-spacing:1px;
-color:#0a1f44;
-}
-
-nav a{
-margin-left:35px;
-text-decoration:none;
-color:#333;
-font-size:14px;
-font-weight:500;
-}
-
-nav a:hover{
-color:#0a1f44;
-}
-
-.hero{
-background:linear-gradient(135deg,#0a1f44,#123c88);
-color:white;
-padding:120px 80px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.hero-left{
-max-width:600px;
-}
-
-.hero h1{
-font-size:54px;
-font-weight:300;
-line-height:1.2;
-}
-
-.hero span{
-font-weight:600;
-}
-
-.hero p{
-margin-top:30px;
-font-size:18px;
-color:#d0defa;
-line-height:1.6;
-}
-
-.primary-btn{
-margin-top:40px;
-padding:16px 40px;
-border-radius:40px;
-border:none;
-font-weight:600;
-cursor:pointer;
-}
-
-.login-box{
-background:white;
-padding:50px;
-border-radius:12px;
-width:360px;
-box-shadow:0 20px 60px rgba(0,0,0,0.2);
-}
-
-.login-box input{
-width:100%;
-padding:14px;
-margin-top:15px;
-border:1px solid #ddd;
-border-radius:6px;
-}
-
-.login-btn{
-margin-top:20px;
-width:100%;
-padding:14px;
-border:none;
-border-radius:40px;
-background:#0a1f44;
-color:white;
-font-weight:600;
-}
-
-.signup-btn{
-margin-top:15px;
-width:100%;
-padding:14px;
-border-radius:40px;
-border:2px solid #0a1f44;
-background:transparent;
-color:#0a1f44;
-}
-
-section{
-padding:60px 80px;
-text-align:center;
-}
-
-section h2{
-font-size:38px;
-color:#0a1f44;
-}
-
-section p{
-margin-top:20px;
-font-size:18px;
-color:#555;
-max-width:800px;
-margin:auto;
-line-height:1.7;
-}
-
-footer{
-padding:40px;
-text-align:center;
-font-size:14px;
-color:#777;
-background:#f8f8f8;
-}
-
-</style>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DMSH Trust — Private Digital Asset Trust</title>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
-
 <body>
 
 <header>
-
-<div class="logo">DMSH TRUST</div>
-
-<nav>
-<a href="mission.html">Mission</a>
-<a href="history.html">History</a>
-<a href="how-it-works.html">How It Works</a>
-<a href="faq.html">FAQ</a>
-<a href="contact.html">Contact</a>
-</nav>
-
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between">
+    <div class="logo">DMSH TRUST</div>
+    <nav>
+      <a href="mission.html">Mission</a>
+      <a href="why.html" class="cta">Why DMSH Trust</a> <!-- added & highlighted -->
+      <a href="how-it-works.html">How It Works</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
 </header>
 
-<div class="hero">
+<main class="container">
+  <section class="hero">
+    <div class="left">
+      <h1>Private Digital Asset Trust<br><span style="font-weight:700">Executed With Precision.</span></h1>
+      <p>
+        DMSH Trust activates only upon verified incapacitation and executes legally documented digital instructions.
+        Devices are processed exactly as prescribed — securely and without deviation.
+      </p>
+      <a href="why.html" class="btn btn-primary">Protect My Digital Privacy</a>
+    </div>
 
-<div class="hero-left">
+    <div class="login-box">
+      <h3>Client Login</h3>
+      <input type="email" placeholder="Email Address" aria-label="email">
+      <input type="password" placeholder="Password" aria-label="password" style="margin-top:10px">
+      <button class="btn btn-primary" style="width:100%; margin-top:14px">Log In</button>
+      <button class="btn btn-outline" style="width:100%; margin-top:10px">Sign Up</button>
+      <p style="font-size:13px; color:#375a86; margin-top:10px">Annual membership only $29 — pay only if execution required.</p>
+    </div>
+  </section>
 
-<h1>
-Private Digital Asset Trust<br>
-<span>Executed With Precision.</span>
-</h1>
+  <!-- compact sections (spacing reduced) -->
+  <section>
+    <h2>Our Mission</h2>
+    <p>To provide a discreet, instruction-based digital asset trust service focused exclusively on physical digital devices and the confidential data within them.</p>
+  </section>
 
-<p>
-DMSH Trust activates only upon verified incapacitation and executes your legally documented digital instructions.
-</p>
+  <section>
+    <h2>How It Works</h2>
+    <p>Define precise instructions → designate trusted contact → we act only after verified event and legal documentation. Clear. Private. Controlled.</p>
+  </section>
 
-<button class="primary-btn">Establish Your Trust</button>
-
-</div>
-
-<div class="login-box">
-
-<h3>Client Login</h3>
-
-<input type="email" placeholder="Email Address">
-<input type="password" placeholder="Password">
-
-<button class="login-btn">Log In</button>
-<button class="signup-btn">Sign Up</button>
-
-</div>
-
-</div>
-
-<section>
-
-<h2>Our Mission</h2>
-
-<p>
-To provide a discreet digital asset trust service focused on physical devices and confidential data.
-</p>
-
-</section>
-
-<section>
-
-<h2>Our History</h2>
-
-<p>
-Traditional estate planning rarely addresses smartphones, laptops, or sensitive digital data.
-DMSH Trust was established to bridge that gap.
-</p>
-
-</section>
-
-<section>
-
-<h2>How It Works</h2>
-
-<p>
-Members document instructions for devices.
-Upon verified incapacitation, devices are securely collected and processed according to directives.
-</p>
-
-</section>
-
-<section>
-
-<h2>Contact</h2>
-
-<p>
-Private client onboarding and institutional inquiries available upon request.
-</p>
-
-</section>
+  <section>
+    <h2>Contact</h2>
+    <p>Private client onboarding & institutional partnerships — contact@dmshtrust.com</p>
+  </section>
+</main>
 
 <footer>
-
-© 2026 DMSH Trust
-
+  <div class="container">© 2026 DMSH Trust — Digital Execution. Privacy Preserved.</div>
 </footer>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Why DMSH Trust</title>
-
-<style>
-
-body{
-margin:0;
-font-family:"Helvetica Neue",Arial;
-background:#0d1117;
-color:white;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:25px 80px;
-background:#0d1117;
-}
-
-.logo{
-font-size:20px;
-font-weight:600;
-color:white;
-}
-
-nav a{
-margin-left:35px;
-text-decoration:none;
-color:#aaa;
-font-size:14px;
-}
-
-nav a:hover{
-color:white;
-}
-
-section{
-padding:100px 80px;
-max-width:900px;
-margin:auto;
-}
-
-h1{
-font-size:52px;
-font-weight:300;
-line-height:1.3;
-}
-
-h2{
-margin-top:60px;
-font-weight:400;
-font-size:30px;
-}
-
-p{
-color:#c5c5c5;
-line-height:1.7;
-font-size:18px;
-margin-top:20px;
-}
-
-ul{
-margin-top:20px;
-color:#c5c5c5;
-}
-
-li{
-margin-bottom:12px;
-}
-
-.cta{
-margin-top:50px;
-padding:18px 50px;
-background:#a4161a;
-border:none;
-border-radius:40px;
-color:white;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-}
-
-.cta:hover{
-background:#c71f25;
-}
-
-.center{
-text-align:center;
-}
-
-.footer{
-text-align:center;
-padding:40px;
-color:#777;
-font-size:14px;
-}
-
-.option-box{
-margin-top:30px;
-border:1px solid #333;
-padding:20px;
-border-radius:8px;
-}
-
-input{
-margin-right:10px;
-}
-
-.form-field{
-margin-top:20px;
-}
-
-input[type=text], input[type=email], input[type=password]{
-width:100%;
-padding:14px;
-margin-top:10px;
-border-radius:6px;
-border:none;
-}
-
-.checkbox{
-margin-top:15px;
-font-size:14px;
-color:#aaa;
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-<div class="logo">DMSH TRUST</div>
-<nav>
-<a href="index.html">Home</a>
-<a href="mission.html">Mission</a>
-<a href="how-it-works.html">How It Works</a>
-<a href="faq.html">FAQ</a>
-<a href="contact.html">Contact</a>
-</nav>
-</header>
-
-<section>
-
-<h1>
-When you're gone,<br>
-who controls your digital life?
-</h1>
-
-<p>
-Your phone knows everything about you.
-Search history. Messages. Photos. Business files.
-Passwords.
-</p>
-
-<p>
-If something happened tomorrow —
-who decides what stays and what gets erased?
-</p>
-
-<div class="center">
-<button class="cta">Protect My Digital Privacy</button>
-</div>
-
-</section>
-
-<section>
-
-<h2>The Uncomfortable Truth</h2>
-
-<ul>
-<li>Phones are often locked.</li>
-<li>Families don’t know passwords.</li>
-<li>Sensitive content may remain exposed.</li>
-<li>Important memories may be permanently lost.</li>
-</ul>
-
-<p>
-Digital chaos adds stress to an already painful moment.
-DMSH prevents that.
-</p>
-
-</section>
-
-<section>
-
-<h2>What DMSH Does</h2>
-
-<ul>
-<li>Delete everything</li>
-<li>Remove selected sensitive content</li>
-<li>Preserve important memories</li>
-</ul>
-
-<p>
-Clear. Private. Controlled.
-No guessing. No confusion.
-</p>
-
-</section>
-
-<section>
-
-<h2>Step 1 — What Feels Right?</h2>
-
-<div class="option-box">
-<input type="radio" name="choice"> Delete everything permanently
-</div>
-
-<div class="option-box">
-<input type="radio" name="choice"> Remove only sensitive content
-</div>
-
-<div class="option-box">
-<input type="radio" name="choice"> Preserve important memories
-</div>
-
-<div class="center">
-<button class="cta">Continue</button>
-</div>
-
-</section>
-
-<section>
-
-<h2>Digital peace of mind for less than $3 per month.</h2>
-
-<p>
-Annual Membership — $29/year
-</p>
-
-<ul>
-<li>Instruction storage</li>
-<li>Device registration</li>
-<li>Secure execution upon verified trigger</li>
-</ul>
-
-<div class="center">
-<button class="cta">Start My Protection – $29/year</button>
-</div>
-
-</section>
-
-<section>
-
-<h2>Final Step — Confirm Your Authority</h2>
-
-<div class="checkbox">
-<input type="checkbox"> I authorize DMSH to execute my instructions upon verified trigger.
-</div>
-
-<div class="checkbox">
-<input type="checkbox"> I understand deletion may be permanent and irreversible.
-</div>
-
-<div class="form-field">
-Digital Signature
-<input type="text" placeholder="Type Full Legal Name">
-</div>
-
-<div class="center">
-<button class="cta">Activate My Digital Protection</button>
-</div>
-
-</section>
-
-<div class="footer">
-DMSH Trust — Digital Execution. Privacy Preserved.
-</div>
 
 </body>
 </html>
