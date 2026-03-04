@@ -1,261 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DMSH Trust | Private Digital Asset Trust</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #ffffff;
-  color: #111;
+
+html{
+scroll-behavior:smooth;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 80px;
-  border-bottom: 1px solid #eee;
-  background: #fff;
+body{
+margin:0;
+font-family:"Helvetica Neue",Arial;
+color:#111;
 }
 
-.logo {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #0a1f44;
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 80px;
+border-bottom:1px solid #eee;
+background:#fff;
+position:sticky;
+top:0;
 }
 
-nav a {
-  margin-left: 35px;
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  font-weight: 500;
+.logo{
+font-size:22px;
+font-weight:600;
+letter-spacing:1px;
+color:#0a1f44;
 }
 
-nav a:hover {
-  color: #0a1f44;
+nav a{
+margin-left:35px;
+text-decoration:none;
+color:#333;
+font-size:14px;
+font-weight:500;
 }
 
-.hero {
-  background: linear-gradient(135deg, #0a1f44, #123c88);
-  color: white;
-  padding: 120px 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+nav a:hover{
+color:#0a1f44;
 }
 
-.hero-left {
-  max-width: 600px;
+.hero{
+background:linear-gradient(135deg,#0a1f44,#123c88);
+color:white;
+padding:120px 80px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.hero h1 {
-  font-size: 54px;
-  font-weight: 300;
-  line-height: 1.2;
+.hero-left{
+max-width:600px;
 }
 
-.hero h1 span {
-  font-weight: 600;
+.hero h1{
+font-size:54px;
+font-weight:300;
+line-height:1.2;
 }
 
-.hero p {
-  margin-top: 30px;
-  font-size: 18px;
-  color: #d0defa;
-  line-height: 1.6;
+.hero span{
+font-weight:600;
 }
 
-.primary-btn {
-  margin-top: 40px;
-  padding: 16px 40px;
-  font-size: 16px;
-  border-radius: 40px;
-  border: none;
-  cursor: pointer;
-  background: white;
-  color: #0a1f44;
-  font-weight: 600;
+.hero p{
+margin-top:30px;
+font-size:18px;
+color:#d0defa;
+line-height:1.6;
 }
 
-.primary-btn:hover {
-  background: #f1f1f1;
+.primary-btn{
+margin-top:40px;
+padding:16px 40px;
+border-radius:40px;
+border:none;
+font-weight:600;
+cursor:pointer;
 }
 
-.login-box {
-  background: white;
-  color: #111;
-  padding: 50px;
-  border-radius: 12px;
-  width: 360px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+.login-box{
+background:white;
+padding:50px;
+border-radius:12px;
+width:360px;
+box-shadow:0 20px 60px rgba(0,0,0,0.2);
 }
 
-.login-box h3 {
-  margin-top: 0;
-  color: #0a1f44;
-  font-size: 22px;
+.login-box input{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:1px solid #ddd;
+border-radius:6px;
 }
 
-.login-box input {
-  width: 100%;
-  padding: 14px;
-  margin-top: 15px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  font-size: 14px;
+.login-btn{
+margin-top:20px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:40px;
+background:#0a1f44;
+color:white;
+font-weight:600;
 }
 
-.login-btn {
-  margin-top: 20px;
-  width: 100%;
-  padding: 14px;
-  border-radius: 40px;
-  border: none;
-  background: #0a1f44;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
+.signup-btn{
+margin-top:15px;
+width:100%;
+padding:14px;
+border-radius:40px;
+border:2px solid #0a1f44;
+background:transparent;
+color:#0a1f44;
 }
 
-.login-btn:hover {
-  background: #081a39;
+section{
+padding:120px 80px;
+text-align:center;
 }
 
-.signup-btn {
-  margin-top: 15px;
-  width: 100%;
-  padding: 14px;
-  border-radius: 40px;
-  border: 2px solid #0a1f44;
-  background: transparent;
-  color: #0a1f44;
-  font-weight: 600;
-  cursor: pointer;
+section h2{
+font-size:40px;
+color:#0a1f44;
 }
 
-.signup-btn:hover {
-  background: #f5f8ff;
+section p{
+margin-top:25px;
+font-size:18px;
+color:#555;
+max-width:800px;
+margin:auto;
+line-height:1.7;
 }
 
-section {
-  padding: 120px 80px;
-  text-align: center;
+.steps{
+display:flex;
+gap:40px;
+margin-top:60px;
+justify-content:center;
+flex-wrap:wrap;
 }
 
-section h2 {
-  font-size: 38px;
-  color: #0a1f44;
+.step{
+width:250px;
+padding:30px;
+border:1px solid #eee;
+border-radius:10px;
 }
 
-section p {
-  margin-top: 25px;
-  font-size: 18px;
-  color: #555;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.7;
+.step h3{
+color:#0a1f44;
 }
 
-footer {
-  padding: 40px;
-  text-align: center;
-  font-size: 14px;
-  color: #777;
-  background: #f8f8f8;
+footer{
+padding:40px;
+text-align:center;
+font-size:14px;
+color:#777;
+background:#f8f8f8;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">DMSH TRUST</div>
-  <nav>
-    <a href="#mission">Mission</a>
-    <a href="#history">History</a>
-    <a href="#how">How It Works</a>
-    <a href="#contact">Contact</a>
-    <a href="#faq">FAQ</a>
-  </nav>
+<div class="logo">DMSH TRUST</div>
+<nav>
+<a href="#mission">Mission</a>
+<a href="#history">History</a>
+<a href="#how">How It Works</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
 <div class="hero">
-  <div class="hero-left">
-    <h1>
-      Private Digital Asset Trust<br>
-      <span>Executed With Precision.</span>
-    </h1>
-    <p>
-      DMSH Trust activates only upon verified incapacitation and executes your 
-      legally documented digital instructions. We collect, process, delete, 
-      transfer, or liquidate your personal devices exactly as prescribed —
-      discreetly, securely, and without deviation.
-    </p>
-    <button class="primary-btn">Establish Your Trust</button>
-  </div>
 
-  <div class="login-box">
-    <h3>Client Login</h3>
-    <input type="email" placeholder="Email Address">
-    <input type="password" placeholder="Password">
-    <button class="login-btn">Log In</button>
-    <button class="signup-btn">Sign Up</button>
-  </div>
+<div class="hero-left">
+<h1>
+Private Digital Asset Trust<br>
+<span>Executed With Precision</span>
+</h1>
+
+<p>
+DMSH Trust activates only upon verified incapacitation
+and executes legally documented digital instructions.
+Devices are processed exactly as prescribed — securely
+and without deviation.
+</p>
+
+<button class="primary-btn">Establish Your Trust</button>
+
+</div>
+
+<div class="login-box">
+
+<h3>Client Login</h3>
+
+<input type="email" placeholder="Email Address">
+<input type="password" placeholder="Password">
+
+<button class="login-btn">Log In</button>
+<button class="signup-btn">Sign Up</button>
+
+</div>
+
 </div>
 
 <section id="mission">
-  <h2>Our Mission</h2>
-  <p>
-    To provide a discreet, instruction-based digital asset trust service focused 
-    exclusively on physical digital devices and the confidential data within them. 
-    We execute your directives exactly as written — nothing more, nothing less.
-  </p>
+
+<h2>Our Mission</h2>
+
+<p>
+DMSH Trust exists to solve a problem traditional estate
+planning ignores.
+
+Modern life lives inside devices: smartphones, laptops,
+encrypted drives, cloud backups, private communications,
+and confidential digital archives.
+
+We provide a legally documented execution system
+for physical digital devices and their contents.
+
+We do not interpret.
+We do not improvise.
+We execute instructions exactly as written.
+</p>
+
 </section>
 
 <section id="history">
-  <h2>Our History</h2>
-  <p>
-    Traditional estate planning addresses financial portfolios but rarely 
-    addresses smartphones, laptops, private files, browsing history, or sensitive 
-    digital information. DMSH Trust was established to bridge that gap.
-  </p>
+
+<h2>Our History</h2>
+
+<p>
+While financial assets transfer through trusts and probate,
+personal digital devices remain legally ambiguous.
+
+Executors frequently face locked phones, encrypted drives,
+unknown passwords, and sensitive data without guidance.
+
+DMSH Trust was created to provide a structured,
+instruction-based solution for these situations.
+</p>
+
 </section>
 
 <section id="how">
-  <h2>How It Works</h2>
-  <p>
-    1. You define legally binding digital instructions.<br><br>
-    2. Upon verified incapacitation, devices are securely collected via insured mail.<br><br>
-    3. We delete, transfer, preserve, or liquidate assets exactly as directed, 
-    with full documentation provided to beneficiaries.
-  </p>
+
+<h2>How It Works</h2>
+
+<div class="steps">
+
+<div class="step">
+<h3>1. Define Instructions</h3>
+<p>
+Members document specific instructions
+for each device and data category.
+</p>
+</div>
+
+<div class="step">
+<h3>2. Secure Archive</h3>
+<p>
+Instructions are cryptographically archived
+and legally validated.
+</p>
+</div>
+
+<div class="step">
+<h3>3. Activation Event</h3>
+<p>
+Execution begins only after verified
+incapacitation or death confirmation.
+</p>
+</div>
+
+<div class="step">
+<h3>4. Controlled Execution</h3>
+<p>
+Devices are collected, processed,
+and instructions executed exactly
+as documented.
+</p>
+</div>
+
+</div>
+
 </section>
 
 <section id="faq">
-  <h2>Frequently Asked Questions</h2>
-  <p>
-    Detailed compliance, verification procedures, and chain-of-custody 
-    documentation are provided during onboarding.
-  </p>
+
+<h2>FAQ</h2>
+
+<p>
+
+<b>What triggers execution?</b><br>
+Execution only begins after verified incapacitation
+or death confirmation.<br><br>
+
+<b>Do you access my data before activation?</b><br>
+No. Devices remain untouched until activation.<br><br>
+
+<b>Can instructions be updated?</b><br>
+Yes. Members can update instructions anytime.
+
+</p>
+
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <p>
-    For institutional inquiries or private client onboarding, please contact 
-    us through secure communication channels.
-  </p>
+
+<h2>Contact</h2>
+
+<p>
+Private Client Inquiries<br>
+Institutional Partnerships<br><br>
+
+contact@dmshtrust.com
+
+</p>
+
 </section>
 
 <footer>
-  © 2026 DMSH Trust. All Rights Reserved.
+© 2026 DMSH Trust. All Rights Reserved.
 </footer>
 
 </body>
