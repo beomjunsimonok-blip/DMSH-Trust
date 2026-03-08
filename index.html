@@ -208,7 +208,7 @@
 
     .acronym-rest {
       color: var(--text);
-      animation: dmshFade 6s ease-in-out infinite;
+      animation: dmshFade 9s ease-in-out infinite;
       will-change: opacity, filter;
     }
 
@@ -221,10 +221,24 @@
     }
 
     @keyframes dmshFade {
-      0%, 45% {
+      /* Visible for ~6 seconds */
+      0%, 66% {
         opacity: 1;
         filter: blur(0px);
       }
+
+      /* Slow dissolve fade-out */
+      75% {
+        opacity: 0;
+        filter: blur(6px);
+      }
+
+      /* Hidden for ~3 seconds */
+      100% {
+        opacity: 0;
+        filter: blur(6px);
+      }
+    }
       50%, 95% {
         opacity: 0;
         filter: blur(6px);
