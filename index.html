@@ -1,385 +1,532 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DMSH Trust</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DMSH Trust</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1115;
+      --panel:#151922;
+      --panel2:#1b2130;
+      --text:#f5f7fb;
+      --muted:#aeb7c9;
+      --blue:#4c8bf5;
+      --line:rgba(255,255,255,.08);
+      --radius:22px;
+      --max:1200px;
+      --shadow:0 24px 80px rgba(0,0,0,.35);
+    }
 
-<style>
-:root{
---bg:#0f1115;
---panel:#151922;
---panel2:#1b2130;
---text:#f5f7fb;
---muted:#aeb7c9;
---blue:#4c8bf5;
---line:rgba(255,255,255,0.08);
---radius:22px;
---max:1200px;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%,rgba(76,139,245,.15),transparent 35%),
+        radial-gradient(circle at 80% 20%,rgba(141,162,255,.12),transparent 30%),
+        radial-gradient(circle at 50% 80%,rgba(76,139,245,.08),transparent 40%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
 
-*{box-sizing:border-box}
-body{
-margin:0;
-font-family:Inter,system-ui;
-background:radial-gradient(circle at 20% 10%,rgba(76,139,245,.15),transparent 35%),
-radial-gradient(circle at 80% 20%,rgba(141,162,255,.12),transparent 30%),
-var(--bg);
-color:var(--text);
-}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
 
-.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .nav-wrap{
+      position:sticky;
+      top:0;
+      z-index:999;
+      backdrop-filter:blur(18px) saturate(140%);
+      -webkit-backdrop-filter:blur(18px) saturate(140%);
+      background:rgba(15,17,21,.62);
+      border-bottom:1px solid var(--line);
+    }
 
-/* NAV */
-.nav-wrap{
-position:sticky;
-top:0;
-z-index:999;
-backdrop-filter:blur(18px) saturate(140%);
-background:rgba(15,17,21,.6);
-border-bottom:1px solid var(--line);
-}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:74px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:-.02em}
+    .brand-logo{
+      width:40px;height:40px;border-radius:12px;overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,.04);border:1px solid var(--line)
+    }
+    .brand-logo img{width:100%;height:100%;object-fit:cover}
+    .brand-fallback{
+      width:100%;height:100%;display:none;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#5a96fa,#3f7ce8);font-weight:800;color:#fff
+    }
 
-nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .nav-links,.nav-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .nav-link,.btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 16px;border-radius:12px;border:1px solid var(--line);
+      color:var(--text);font-weight:600;font-size:.95rem;
+      background:rgba(255,255,255,.02);transition:.2s ease
+    }
+    .nav-link:hover,.btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.16)}
+    .btn-primary{background:linear-gradient(180deg,#5a96fa,#3f7ce8);box-shadow:0 10px 30px rgba(76,139,245,.28)}
 
-.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .hero{position:relative;overflow:hidden;padding:72px 0 34px}
+    .hero::before{
+      content:"";position:absolute;right:-120px;top:20px;width:420px;height:420px;
+      background:radial-gradient(circle,rgba(76,139,245,.25),transparent 70%);
+      filter:blur(40px);animation:heroPulse 12s ease-in-out infinite;z-index:0
+    }
+    @keyframes heroPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.25);opacity:.35}}
 
-.brand-logo{
-width:38px;height:38px;border-radius:10px;overflow:hidden
-}
-.brand-logo img{width:100%;height:100%;object-fit:cover}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;position:relative;z-index:1}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;
+      background:rgba(255,255,255,.04);border:1px solid var(--line);color:#d7deee;font-size:.9rem;margin-bottom:18px
+    }
+    .eyebrow-dot{width:8px;height:8px;border-radius:999px;background:#8da2ff;box-shadow:0 0 0 6px rgba(141,162,255,.12)}
 
-.nav-links{display:flex;gap:26px;color:var(--muted);font-size:.95rem}
+    .acronym{font-size:clamp(2.8rem,5vw,4.6rem);font-weight:800;line-height:.94;letter-spacing:-.06em}
+    .acronym-line{display:flex}
+    .core{text-shadow:0 0 18px rgba(76,139,245,.35),0 0 40px rgba(76,139,245,.18)}
+    .rest{animation:dmshFade 9s ease-in-out infinite;will-change:opacity,filter}
+    @keyframes dmshFade{0%{opacity:0;filter:blur(6px)}10%{opacity:1;filter:blur(0)}10%,70%{opacity:1}85%{opacity:0;filter:blur(6px)}100%{opacity:0;filter:blur(6px)}}
 
-.nav-actions{display:flex;gap:10px}
+    .tagline{font-size:1.25rem;color:#d6def0;margin:16px 0 0;font-weight:500;max-width:25ch}
+    .hero-copy p{color:var(--muted);max-width:60ch;margin-top:18px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .trust-points{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+    .trust-chip{padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line);color:#d9e1f1;font-size:.95rem}
 
-.btn{
-padding:12px 18px;border-radius:12px;border:1px solid var(--line);
-text-decoration:none;color:var(--text);font-weight:600
-}
+    .device-card{
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden
+    }
+    .device-card::after{content:"";position:absolute;inset:auto -80px -100px auto;width:240px;height:240px;border-radius:999px;background:radial-gradient(circle,rgba(76,139,245,.22),transparent 68%)}
+    .window-top{display:flex;gap:8px;margin-bottom:18px}
+    .window-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18)}
+    .card-title{font-size:1rem;color:#e8eefc;margin:0 0 14px;font-weight:700}
+    .field{display:grid;gap:14px}
+    .input{
+      width:100%;padding:16px 18px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.04);color:#fff;font-size:1rem;outline:none
+    }
+    .input::placeholder{color:#98a4bc}
+    .full-btn{width:100%;padding:18px;font-size:1.02rem}
+    .forgot{text-align:center;color:var(--muted);font-size:.92rem;margin-top:2px;display:block}
 
-.btn-primary{background:linear-gradient(#5a96fa,#3f7ce8)}
+    .section{padding:54px 0}
+    .section-head{max-width:760px;margin-bottom:28px}
+    .section-kicker{color:#91a8da;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.8rem;margin-bottom:12px}
+    h2{margin:0;font-size:clamp(2rem,4vw,3rem);line-height:1.05;letter-spacing:-.04em}
+    .section-head p{color:var(--muted);font-size:1.03rem;margin-top:16px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .panel{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:24px;padding:28px}
+    .panel h3{margin:0 0 12px;font-size:1.2rem;letter-spacing:-.03em}
+    .panel p{margin:0;color:var(--muted)}
+    .list{display:grid;gap:14px;margin-top:18px}
+    .list div,.faq-item,.feature-item{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:16px 18px}
 
-.hero{padding:70px 0}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+    .example-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .example-card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:24px;padding:24px}
+    .example-stack{display:grid;gap:14px;margin-top:18px}
+    .example-row{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05)}
+    .example-name{font-weight:700}
+    .example-desc{font-size:.93rem;color:var(--muted);margin-top:4px;max-width:38ch}
+    .example-label{font-size:.82rem;font-weight:700;color:#dbe5ff;min-width:132px;text-align:right;line-height:1.35}
 
-/* DMSH animation */
-.acronym{font-size:clamp(2.8rem,5vw,4.4rem);font-weight:800;line-height:.95}
-.acronym-line{display:flex}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .feature-item h3,.faq-item h3{margin:0 0 8px;font-size:1.04rem;letter-spacing:-.02em}
+    .feature-item p,.faq-item p{margin:0;color:var(--muted)}
 
-.core{text-shadow:0 0 18px rgba(76,139,245,.35)}
+    .pricing-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:stretch}
+    .price-card{padding:30px;border-radius:28px;background:linear-gradient(180deg,rgba(76,139,245,.14),rgba(255,255,255,.03));border:1px solid var(--line);box-shadow:var(--shadow)}
+    .price{display:flex;align-items:baseline;gap:8px;margin:16px 0 12px}
+    .price strong{font-size:3.2rem;letter-spacing:-.06em;line-height:1}
+    .price span{color:var(--muted)}
+    .muted{color:var(--muted)}
+    .checklist{display:grid;gap:12px;margin:18px 0 0}
+    .checklist div{padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);color:#dce5f8}
+    .execution-card{padding:28px;border-radius:28px;background:rgba(255,255,255,.03);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}
+    .fee-list{display:grid;gap:14px;margin-top:18px}
+    .fee-item{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+    .fee-item strong{display:block}
+    .fee-item span{color:var(--muted);font-size:.92rem}
+    .discount-note{margin-top:18px;padding:14px 16px;border-radius:16px;background:rgba(76,139,245,.09);border:1px solid rgba(76,139,245,.18);color:#d9e6ff}
 
-.rest{
-animation:dmshFade 9s ease-in-out infinite
-}
+    .faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .contact-panel{max-width:720px}
 
-@keyframes dmshFade{
-0%{opacity:0;filter:blur(6px)}
-10%{opacity:1;filter:blur(0)}
-10%,70%{opacity:1}
-85%{opacity:0;filter:blur(6px)}
-100%{opacity:0}
-}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;will-change:opacity,transform}
+    .reveal.visible{opacity:1;transform:translateY(0)}
 
-.tagline{font-size:1.25rem;margin-top:16px;color:#d6def0}
+    footer{padding:38px 0 60px;color:var(--muted);font-size:.95rem}
+    .footer-row{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid rgba(255,255,255,.06);padding-top:24px}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
 
-.hero p{color:var(--muted);max-width:600px}
+    @media (max-width:1100px){
+      .hero-grid,.grid-2,.feature-grid,.pricing-grid,.faq-grid,.example-grid,.trust-points{grid-template-columns:1fr}
+    }
 
-/* card */
-.device-card{
-background:linear-gradient(rgba(255,255,255,.04),rgba(255,255,255,.02));
-border:1px solid var(--line);
-border-radius:26px;padding:26px
-}
+    @media (max-width:900px){
+      .nav-links{display:none}
+      .container{width:calc(100% - 28px)}
+      .hero{padding-top:48px}
+      nav{min-height:68px}
+      .hero-grid{gap:28px}
+      .device-card{width:100%;padding:22px;margin:0 auto}
+      .hero-actions{display:none}
+      .mobile-actions{display:flex;gap:12px;margin-top:16px;width:100%}
+      .mobile-actions .btn{flex:1;padding:16px}
+      .footer-row{flex-direction:column;align-items:flex-start}
+    }
 
-.card-title{font-weight:700;margin-bottom:16px}
-
-input{width:100%;padding:16px;border-radius:12px;border:1px solid var(--line);
-background:rgba(255,255,255,.04);color:white}
-
-button{width:100%;padding:16px;border-radius:12px;border:1px solid var(--line);
-background:linear-gradient(#5a96fa,#3f7ce8);color:white;font-weight:600}
-
-.secondary-btn{background:none}
-
-.section{padding:60px 0}
-
-h2{font-size:clamp(2rem,4vw,2.6rem);margin:0}
-
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
-
-.panel{
-background:rgba(255,255,255,.03);
-border:1px solid var(--line);
-border-radius:20px;padding:24px
-}
-
-.list div{
-padding:14px;border-radius:14px;margin-top:10px;
-background:rgba(255,255,255,.03);
-border:1px solid var(--line)
-}
-
-/* example device plan */
-.example-card{
-background:rgba(255,255,255,.03);
-border:1px solid var(--line);
-border-radius:22px;padding:22px;margin-top:20px
-}
-
-.example-row{display:flex;justify-content:space-between;margin-top:12px}
-.example-name{font-weight:600}
-.example-desc{font-size:.9rem;color:var(--muted)}
-
-.badge{font-size:.8rem;padding:6px 10px;border-radius:999px;border:1px solid var(--line)}
-.badge-deliver{background:rgba(120,196,135,.15)}
-.badge-delete{background:rgba(255,123,123,.15)}
-
-.cleanroom-diagram{width:100%;max-width:420px;margin:auto;display:block}
-
-@media(max-width:900px){
-.hero-grid{grid-template-columns:1fr}
-.nav-links{display:none}
-}
-</style>
+    @media (min-width:901px){.mobile-actions{display:none}}
+  </style>
 </head>
-
 <body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a href="#top" class="brand">
+          <span class="brand-logo">
+            <img src="logo.png" alt="DMSH Trust logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="brand-fallback">D</span>
+          </span>
+          <span>DMSH Trust</span>
+        </a>
 
-<div class="nav-wrap">
-<div class="container">
-<nav>
+        <div class="nav-links">
+          <a class="nav-link" href="#treatment">Treatment Options</a>
+          <a class="nav-link" href="#cleanroom">Clean Room Processing</a>
+          <a class="nav-link" href="#pricing">Pricing</a>
+          <a class="nav-link" href="#faq">FAQ</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </div>
 
-<div class="brand">
-<span class="brand-logo"><img src="logo.png"></span>
-<span>DMSH Trust</span>
-</div>
+        <div class="nav-actions">
+          <a class="btn" href="#how">See How It Works</a>
+          <a class="btn btn-primary" href="#pricing">Create Your Device Plan</a>
+        </div>
+      </nav>
+    </div>
+  </div>
 
-<div class="nav-links">
-<a href="#treatment">Treatment Options</a>
-<a href="#cleanroom">Clean Room Processing</a>
-<a href="#pricing">Pricing</a>
-<a href="#faq">FAQ</a>
-<a href="#contact">Contact</a>
-</div>
+  <main id="top">
+    <section class="hero reveal">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Post-incapacitation digital device privacy planning
+          </div>
 
-<div class="nav-actions">
-<a class="btn" href="#how">See how it works</a>
-<a class="btn btn-primary" href="#pricing">Create Your Device Plan</a>
-</div>
+          <div class="acronym" aria-label="Delete My Search History">
+            <div class="acronym-line"><span class="core">D</span><span class="rest">elete</span></div>
+            <div class="acronym-line"><span class="core">M</span><span class="rest">y</span></div>
+            <div class="acronym-line"><span class="core">S</span><span class="rest">earch</span></div>
+            <div class="acronym-line"><span class="core">H</span><span class="rest">istory</span></div>
+          </div>
 
-</nav>
-</div>
-</div>
+          <p class="tagline">When you're gone, your digital life shouldn't become chaos.</p>
 
-<main>
+          <p>
+            DMSH Trust receives your physical devices and handles them according to your instructions — separating what should be deleted, what should be preserved, and what should be delivered after a verified trigger event.
+          </p>
 
-<section class="hero">
-<div class="container hero-grid">
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#pricing">Create Your Device Plan</a>
+            <a class="btn" href="#how">How It Works</a>
+          </div>
 
-<div>
-<div class="acronym">
-<div class="acronym-line"><span class="core">D</span><span class="rest">elete</span></div>
-<div class="acronym-line"><span class="core">M</span><span class="rest">y</span></div>
-<div class="acronym-line"><span class="core">S</span><span class="rest">earch</span></div>
-<div class="acronym-line"><span class="core">H</span><span class="rest">istory</span></div>
-</div>
+          <div class="trust-points">
+            <div class="trust-chip">Handled under trustee-grade procedures</div>
+            <div class="trust-chip">Clean room processing with video footage and logs</div>
+            <div class="trust-chip">No social media, email, or online account access</div>
+          </div>
+        </div>
 
-<p class="tagline">When you're gone, your digital life shouldn't become chaos.</p>
+        <div>
+          <div class="device-card">
+            <div class="window-top"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span></div>
+            <p class="card-title">Account Access</p>
+            <div class="field">
+              <input class="input" type="email" placeholder="Email address">
+              <input class="input" type="password" placeholder="Password">
+              <a class="btn btn-primary full-btn" href="#">Sign In</a>
+              <a class="btn full-btn" href="#">Create Account</a>
+              <a class="forgot" href="#">Forgot password?</a>
+            </div>
+          </div>
 
-<p>
-DMSH Trust receives your physical devices and handles them according to your instructions — separating what should be deleted, what should be preserved, and what should be delivered after a verified trigger event.
-</p>
+          <div class="mobile-actions">
+            <a class="btn btn-primary" href="#pricing">Create Your Device Plan</a>
+            <a class="btn" href="#how">How It Works</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div style="margin-top:26px">
-<a class="btn btn-primary" href="#pricing">Create your device plan</a>
-<a class="btn" href="#how">How it works</a>
-</div>
+    <section class="section reveal" id="problem">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">The Problem</div>
+          <h2>Your devices may outlive you — and so will everything inside them.</h2>
+          <p>
+            When death or incapacitation happens, phones, laptops, hard drives, and personal devices do not disappear. They remain exactly where they were, often filled with private files, sensitive history, unfinished records, family memories, and information no one knows how to handle.
+          </p>
+        </div>
 
-</div>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>What families face</h3>
+            <div class="list">
+              <div>Private photos mixed with sensitive material</div>
+              <div>Search history, intimate files, and personal records left behind</div>
+              <div>Important memories sitting beside information that should never be exposed</div>
+              <div>Family members forced to guess what should be kept, erased, or never opened</div>
+            </div>
+          </div>
 
-<div class="device-card">
-<div class="card-title">Account Access</div>
+          <div class="panel">
+            <h3>What goes wrong without a plan</h3>
+            <div class="list">
+              <div>Valuable memories are lost</div>
+              <div>Private material is accidentally exposed</div>
+              <div>Devices are passed on without proper review</div>
+              <div>No one knows what the trustor would have wanted</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<input type="email" placeholder="Email address">
-<br><br>
-<input type="password" placeholder="Password">
-<br><br>
-<button>Sign In</button>
-<br><br>
-<button class="secondary-btn">Create Account</button>
+    <section class="section reveal" id="examples">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Examples</div>
+          <h2>Examples of our service</h2>
+          <p>
+            Every plan can be tailored differently. Some clients want selected memories preserved. Others want sensitive material removed before a device is returned to family or a designated recipient.
+          </p>
+        </div>
 
-</div>
+        <div class="example-grid">
+          <div class="example-card">
+            <p class="card-title">Examples of our service</p>
+            <div class="example-stack">
+              <div class="example-row">
+                <div>
+                  <div class="example-name">MacBook Pro</div>
+                  <div class="example-desc">Family photos preserved · browser history removed before the laptop is returned to a sibling.</div>
+                </div>
+                <div class="example-label">Preserved photos · cleaned browsing data</div>
+              </div>
 
-</div>
-</section>
+              <div class="example-row">
+                <div>
+                  <div class="example-name">External SSD</div>
+                  <div class="example-desc">NSFW files removed · private folders deleted · remaining archive transferred to the designated recipient.</div>
+                </div>
+                <div class="example-label">NSFW removal · selective deletion</div>
+              </div>
 
+              <div class="example-row">
+                <div>
+                  <div class="example-name">iPhone</div>
+                  <div class="example-desc">Selected personal photos preserved · personal notes removed · device prepared for transfer to family.</div>
+                </div>
+                <div class="example-label">Selected preservation · device transfer</div>
+              </div>
+            </div>
+          </div>
 
-<!-- PROBLEM FIRST -->
-<section class="section" id="problem">
-<div class="container">
-<h2>Your devices may outlive you — and so will everything inside them.</h2>
-<p style="color:var(--muted);max-width:700px">
-Phones, laptops, and storage devices often contain private history, sensitive records, and personal material that families are unprepared to handle.
-</p>
+          <div class="example-card">
+            <p class="card-title">Information needed for service</p>
+            <div class="list">
+              <div>Pre-set trigger event such as death, coma, or defined incapacitation</div>
+              <div>Contact of the party responsible for shipping device</div>
+              <div>Device Access Password</div>
+              <div>Device &amp; File treatment options</div>
+              <div>Recipient of preserved files &amp; device</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="grid-2">
+    <section class="section reveal" id="how">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">How It Works</div>
+          <h2>A clear, step-by-step process built around real device handling.</h2>
+          <p>
+            The homepage summarizes the journey simply, while the product can later expand each step into a detailed onboarding flow.
+          </p>
+        </div>
 
-<div class="panel">
-<h3>What families face</h3>
-<div class="list">
-<div>Private photos mixed with sensitive material</div>
-<div>Search history and personal files left behind</div>
-<div>Important memories next to information that should never be exposed</div>
-<div>Family members forced to guess what should be deleted or preserved</div>
-</div>
-</div>
+        <div class="grid-2">
+          <div class="panel"><h3>1. Choose your devices</h3><p>Select which phones, laptops, tablets, drives, or storage devices are covered by your plan.</p></div>
+          <div class="panel"><h3>2. Set your treatment rules</h3><p>Decide what should be preserved, deleted, cleaned, reviewed, transferred, or returned.</p></div>
+          <div class="panel"><h3>3. Define trigger and contacts</h3><p>Choose the verified trigger event and the emergency contact who can confirm it and ship the device.</p></div>
+          <div class="panel"><h3>4. We process and return</h3><p>Once the trigger is confirmed and the device is received, DMSH Trust handles it according to plan and delivers it to the designated recipient.</p></div>
+        </div>
+      </div>
+    </section>
 
-<div class="panel">
-<h3>What goes wrong without a plan</h3>
-<div class="list">
-<div>Valuable memories are lost</div>
-<div>Private material is accidentally exposed</div>
-<div>Devices passed on without review</div>
-<div>No one knows what the trustor intended</div>
-</div>
-</div>
+    <section class="section reveal" id="treatment">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Treatment Options</div>
+          <h2>Built for precise decisions, not vague promises.</h2>
+          <p>
+            Your plan can be simple or highly specific. The product should feel calm and minimal on the surface, while still giving users granular control over what is removed, preserved, or transferred.
+          </p>
+        </div>
 
-</div>
-</div>
-</section>
+        <div class="feature-grid">
+          <div class="feature-item"><h3>Selective deletion</h3><p>Delete only designated files, folders, categories, or device-level material based on your plan.</p></div>
+          <div class="feature-item"><h3>Privacy-focused cleanup</h3><p>Options like removing NSFW material, browsing history, or sensitive records without erasing everything else.</p></div>
+          <div class="feature-item"><h3>Preservation rules</h3><p>Keep family photos, legal records, or selected archives intact for future delivery.</p></div>
+          <div class="feature-item"><h3>Beneficiary delivery</h3><p>Send the processed device or designated materials to the family member or recipient you chose in advance.</p></div>
+          <div class="feature-item"><h3>Emergency contact workflow</h3><p>Predefine who confirms the trigger event and who is responsible for shipping the device.</p></div>
+          <div class="feature-item"><h3>Documented handling</h3><p>Every device moves through a restrained, logged, and accountable process rather than an improvised handoff.</p></div>
+        </div>
+      </div>
+    </section>
 
+    <section class="section reveal" id="cleanroom">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Clean Room Processing</div>
+          <h2>Devices are handled in a controlled clean room environment.</h2>
+          <p>
+            Every device received by DMSH Trust enters a documented chain-of-custody workflow. Processing happens in a controlled clean room environment with video recording and handling logs so actions can be reviewed if questions ever arise.
+          </p>
+        </div>
 
-<!-- EXAMPLE DEVICE PLAN -->
-<section class="section">
-<div class="container">
+        <div class="panel">
+          <h3>Documented chain of custody</h3>
+          <div class="list">
+            <div>Tracked device intake</div>
+            <div>Secure storage prior to processing</div>
+            <div>Video-recorded clean room workstations</div>
+            <div>Handling logs for every operation</div>
+            <div>Controlled device return or delivery</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h2>Example device treatment plan</h2>
+    <section class="section reveal" id="pricing">
+      <div class="container pricing-grid">
+        <div class="price-card">
+          <div class="section-kicker">Membership</div>
+          <h2>Simple annual membership, with execution fees only when service is performed.</h2>
+          <div class="price"><strong>$29</strong><span>/ year</span></div>
+          <p class="muted">Monthly equivalent: <strong style="color:var(--text)">$3.50</strong></p>
+          <div class="checklist">
+            <div>Device planning profile</div>
+            <div>Treatment rule setup</div>
+            <div>Trigger event designation</div>
+            <div>Emergency contact and recipient configuration</div>
+          </div>
+        </div>
 
-<div class="example-card">
+        <div class="execution-card">
+          <div>
+            <div class="section-kicker">Execution Fee</div>
+            <h3 style="margin:0;font-size:1.5rem;letter-spacing:-.04em;">Execution service pricing</h3>
+            <div class="fee-list">
+              <div class="fee-item">
+                <div>
+                  <strong>Delete All Data &amp; Transfer Device</strong>
+                  <span>Full device data deletion followed by device transfer to the designated recipient.</span>
+                </div>
+                <div><strong>$199</strong></div>
+              </div>
+              <div class="fee-item">
+                <div>
+                  <strong>Selective Deletion &amp; Transfer</strong>
+                  <span>Selected files or categories removed while preserved materials and device are transferred.</span>
+                </div>
+                <div><strong>$499</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="discount-note">Firefighters, police officers, and military personnel receive <strong>15% off</strong>.</div>
+        </div>
+      </div>
+    </section>
 
-<div class="example-row">
-<div>
-<div class="example-name">MacBook Pro</div>
-<div class="example-desc">Family photos preserved · browsing history removed</div>
-</div>
-<div class="badge badge-deliver">Files delivered to family</div>
-</div>
+    <section class="section reveal" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">FAQ</div>
+          <h2>Answers to the questions users will ask first.</h2>
+        </div>
 
-<div class="example-row">
-<div>
-<div class="example-name">External SSD</div>
-<div class="example-desc">NSFW files removed · private folders deleted</div>
-</div>
-<div class="badge badge-delete">Sensitive files removed</div>
-</div>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>Do you access my social media or email accounts?</h3>
+            <p>No. DMSH Trust does not access social media, email, or online accounts, and does not bypass platform security.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What do you actually handle?</h3>
+            <p>We handle photos, files, browser history, and the device according to the client's instructions.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What kind of trigger event can I set?</h3>
+            <p>You can define events such as death, coma, or another incapacitation scenario that your workflow recognizes.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How do you maintain accountability?</h3>
+            <p>Through clean room procedures, video footage, intake logs, handling logs, and a controlled chain of custody.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I choose specific files or folders to remove?</h3>
+            <p>Yes. Plans can include selective deletion rules for specific files, folders, browsing data, or categories of material.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Who sends the device to DMSH Trust?</h3>
+            <p>The designated contact or shipping party identified in your plan is responsible for sending the device after the trigger event is confirmed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="section reveal" id="contact">
+      <div class="container contact-panel">
+        <div class="section-head">
+          <div class="section-kicker">Contact</div>
+          <h2>Questions about device handling or trust structure?</h2>
+          <p>customerservice@dmshtrust.com</p>
+          <p>We aim to respond within 24 hours.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div class="example-card">
-<div class="card-title">Information needed for service</div>
+  <footer>
+    <div class="container footer-row">
+      <div><strong style="color:var(--text)">DMSH Trust</strong><br>Trustee-grade physical device privacy planning.</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Legal Boundaries</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
 
-<div class="list">
-<div>Trigger event: death, coma, or defined incapacitation</div>
-<div>Emergency contact responsible for shipping device</div>
-<div>Designated recipient for preserved files</div>
-<div>Account boundary: no social media or email access</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-
-<section class="section" id="cleanroom">
-<div class="container">
-<h2>Clean room device processing</h2>
-
-<div class="grid-2">
-
-<div class="panel">
-<h3>Documented chain of custody</h3>
-<div class="list">
-<div>Tracked device intake</div>
-<div>Secure storage prior to processing</div>
-<div>Video‑recorded clean room workstations</div>
-<div>Handling logs for each action</div>
-<div>Controlled device return</div>
-</div>
-</div>
-
-<div class="panel">
-
-<svg class="cleanroom-diagram" viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
-<rect x="10" y="100" width="90" height="40" rx="10" fill="#4c8bf5"/>
-<text x="55" y="125" text-anchor="middle" fill="white" font-size="12">Device</text>
-<line x1="100" y1="120" x2="160" y2="120" stroke="#8da2ff" stroke-width="2"/>
-<rect x="160" y="90" width="110" height="60" rx="12" fill="#1b2130" stroke="#8da2ff"/>
-<text x="215" y="120" text-anchor="middle" fill="#cfd9ff" font-size="12">Clean Room</text>
-<line x1="270" y1="120" x2="330" y2="120" stroke="#8da2ff" stroke-width="2"/>
-<rect x="330" y="100" width="80" height="40" rx="10" fill="#4c8bf5"/>
-<text x="370" y="125" text-anchor="middle" fill="white" font-size="12">Recipient</text>
-</svg>
-
-</div>
-
-</div>
-</div>
-</section>
-
-
-<section class="section" id="pricing">
-<div class="container">
-<h2>Membership pricing</h2>
-
-<div class="panel">
-<h3>$29 / year</h3>
-<p style="color:var(--muted)">
-Annual membership stores your device plan. Execution fees apply only when devices are processed.
-</p>
-</div>
-
-</div>
-</section>
-
-
-<section class="section" id="faq">
-<div class="container">
-<h2>FAQ</h2>
-
-<div class="grid-2">
-<div class="panel">
-<h3>Do you access social media accounts?</h3>
-<p>No. DMSH Trust never accesses social media, email, or online accounts.</p>
-</div>
-
-<div class="panel">
-<h3>What do you actually handle?</h3>
-<p>We process physical devices according to the trustor's instructions.</p>
-</div>
-</div>
-
-</div>
-</section>
-
-<section class="section" id="contact">
-<div class="container">
-<h2>Contact</h2>
-<p style="color:var(--muted)">contact@dmshtrust.com</p>
-</div>
-</section>
-
-</main>
-
-<footer>
-<div class="container" style="padding:30px 0;color:var(--muted)">
-DMSH Trust
-</div>
-</footer>
-
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('visible');}
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
 </body>
 </html>
